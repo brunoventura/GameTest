@@ -1,0 +1,48 @@
+<html><head>
+    <meta charset="utf-8">
+    <title>Battle Fish</title>
+     
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0, target-densitydpi=device-dpi">
+    <style>*{-webkit-tap-highlight-color:rgba(0,0,0,0);}html{overflow:hidden;}body,html{margin:0;padding:0;background-color:#3082AF;height:100%;width:100%;display:block;-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;}#canvas{background-color:#3082AF;margin:0;padding:0;}#loader{width:50px;height:50px;top:50%;left:50%;position:absolute;margin-top:-25px;margin-left:-25px;background:url('assets/loader.gif') no-repeat 50% 50%;display:block!important;}</style>
+    <link rel="stylesheet" href="http://cdn.clay.io/api.css"><script type="text/javascript" src="http://cdn.clay.io/socket.io.js"></script><script async="" src="http://clay.io/api/api.js"></script><script type="text/javascript">
+
+        var clayIOPreroll;
+        function initPreloader() {
+            loadGameScript();
+        }
+        var Clay = Clay || {};
+        Clay.gameKey = "battlefish";
+        Clay.readyFunctions = [initPreloader];
+        Clay.ready = function( fn ) {
+            Clay.readyFunctions.push( fn );
+        };
+        ( function() {
+            var clay = document.createElement("script"); clay.async = true;
+            clay.src = ( "https:" == document.location.protocol ? "https://" : "http://" ) + "clay.io/api/api.js";
+            var tag = document.getElementsByTagName("script")[0]; tag.parentNode.insertBefore(clay, tag);
+        } )();
+
+        var isGameLoaded = false;
+        function loadGameScript() {
+            var head= document.getElementsByTagName('head')[0];
+            var s= document.createElement('script');
+            s.type= 'text/javascript';
+            s.src= 'game.js';
+            s.onload = s.onreadystatechange = function() {
+                if (!this.readyState || s.readyState == 'loaded' || this.readyState == 'complete')
+                {
+                    if(!isGameLoaded) MyGame.init();
+                    isGameLoaded = true;
+                }
+            };
+            head.appendChild(s);
+        }
+
+
+    </script>
+    <style type="text/css"></style><script type="text/javascript" src="game.js"></script></head>
+    <body>
+        <canvas id="canvas" width="488" height="650" style="position: absolute; top: 50%; left: 50%; margin-top: -325.48314606741576px; margin-left: -244.1123595505618px;">
+        </canvas>
+    </body>
+</html>
